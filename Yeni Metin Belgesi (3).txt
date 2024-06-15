@@ -1,0 +1,21 @@
+"I will talk about our process of writing a Bearing-Bypass Program using the Rust and Python programming languages. In dealing with the complexities of our project, we broke them down into simpler tasks.
+
+We have completed the first two steps. I will start by discussing the first task and then move on to the second. Firstly, we parse a BDF file to identify elements for our model component. As we have mentioned before, the BDF file introduces our model component with various element types such as GRID, CBAR, and CQUAD4.
+
+I will briefly mention their properties. The GRID represents node points with unique IDs and coordinate positions in 3D space (denoted as X1, X2, X3). CBAR is a bar element connecting two GRID points, denoted by GA and GB, with properties like orientation defined by the X1, X2, X3 components.
+
+CQUAD4 elements are critical as they are defined by an element ID, a property ID, and four grid points—G1, G2, G3, and G4—creating a quadrilateral shape in our model. I will quickly demonstrate in HyperMesh to visualize these elements in our example of a BDF file.
+
+As you can see, GRID is a point, CBAR is a connector that connects two GRID points in separate components. CQUAD4 is a quadrilateral shape in our model, and it doesn't necessarily have to be a perfect rectangle as we write our code to be generic.
+
+Our first task is to identify all CQUAD4 elements that share a common GRID point with a touching CBAR element. To accomplish this, we've parsed our Bulk Data File, the BDF. We wrote code to find CQUAD4 elements surrounded by a specified GRID point and touching CBAR elements.
+
+The second task involves determining which CQUAD4 element we end up in when we move a certain distance along the elemental coordinate direction of a specific CQUAD4 element. This is important because when we read the force on a specific CQUAD4 element in the third step, that force affects not only the element itself but also the surrounding area. Therefore, we need to calculate which CQUAD4 elements fall within a certain direction and distance from a specific element, taking into account the forces exerted by neighboring CQUAD4 elements.
+
+We have a video demonstrating this work in HyperMesh.There is no voice in video i will explain what we try to do In this demonstration, we're selecting a CQUAD4 element by its ID—380, for example. After identifying its elemental coordinate system, we select a distance to move along the x-axis, let's say 5 meters. As you can observe, the point ends up at element 344.
+
+We automated this work using Rust and Python, allowing us to move a specific distance along the elemental coordinate system and determining our final position. For instance, with a CQUAD4 element ID of 380, traversing 5 meters along its local x-axis, we can predict and confirm that we will end up within the boundaries of another CQUAD4, element 344, to be precise.
+
+In our fourth step, after performing some calculations for all elements, we will determine the load each element bears. From the results of these calculations, we will obtain the safety factor (resistance) for every element. Based on this, we will analyze whether each element can withstand its respective load."
+
+We are currently working on example BDF files. Next term, we will integrate our work onto real models.

@@ -40,6 +40,3 @@ The program prompts the user to enter a file path, verifies if the file exists, 
 ## Error Handling
 The application includes basic error handling for common scenarios such as missing file path, file not found, and errors during file reading.
 
-## License
-Specify your license here or indicate if the project is open source.
-"# FileTypeInspector" 
